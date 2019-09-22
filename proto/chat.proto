@@ -1,0 +1,101 @@
+syntax = "proto2";
+package chat;
+
+// activate, message, deactivate
+
+// stream of messages coming in from server 
+// stream dies once a message is sent - reactivated immediately.
+
+service ChatService {
+    
+    // register user
+    rpc registerRoom(RegisterClient) returns (RegisterClientResponse);
+
+    // messaging
+    rpc sendMessage(ChatMessage) returns (ChatMessageResponse);
+
+    // updating messages
+    rpc updateMessage(MessageUpdateReq) returns (stream UpdateChatMessages);
+
+    // leaving
+    rpc exitChat(ExitRequest) returns (ExitResponse);
+}
+
+// username
+// chat room id
+message RegisterClient {
+    required string username = 1;
+    required string roomId = 2;
+}
+
+// response : 
+// chat authentication response
+// (optional) current users in room
+// (maybe) - all messages so far in given chat room
+message RegisterClientResponse {
+    enum authResponseStatus {
+        OK = 0;
+        DISALLOWED = 1;
+    }
+    required authResponseStatus status = 1;
+    repeated RoomUserEntity users = 2;
+}
+
+// user entity for registration
+// maybe add custom user features in future?
+message RoomUserEntity {
+    required string username = 1;
+}
+
+// chat payload
+// username
+// timestamp
+message ChatMessage {
+    required string username = 1;
+    required string payload = 2;
+    required string time = 3;
+}
+
+// Message Response
+message ChatMessageResponse {
+    enum messageStat {
+        OK = 0;
+        ERR = 1;
+    }
+    required messageStat status = 1;
+}
+
+// for pushing chat updates later
+message MessageUpdateReq {
+    required string username = 1;
+}
+
+message UpdateChatMessages {
+    required ChatMessage messages = 1;
+}
+
+message ExitRequest {
+    required string username = 1;
+}
+
+message ExitResponse {
+    enum exitStatus {
+        PERMITTED = 0;
+        NOT_PERMITTED = 1;
+    }
+    required exitStatus exitstatus = 1;
+}
+
+message RegisterChatRoomRequest {
+    // register chat room with username as admin
+    required string chatRoomName = 1;
+    required string username = 2;
+}
+
+message RegisterChatRoomResponse {
+    enum registrationStatus {
+        OK = 0;
+        EXISTS = 1;
+    }
+    required registrationStatus regStatus = 1;
+}
