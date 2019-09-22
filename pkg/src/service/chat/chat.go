@@ -13,13 +13,16 @@ func NewChatServiceServer() chat.ChatServiceServer {
 func (c chatServiceServer) RegisterRoom(ctx context.Context, message *chat.RegisterClient) (*chat.RegisterClientResponse, error) {
     //panic("implement me")
 
+    // test enum val
     enumVal, ok := chat.RegisterClientResponseAuthResponseStatus_value["OK"]
+
     if !ok {
     	panic("invalid enum thing")
 	}
+
 	return &chat.RegisterClientResponse{
-		Status:               chat.RegisterClientResponseAuthResponseStatus.Enum(enumVal),
-		Users:                nil,
+		Status: chat.RegisterClientResponseAuthResponseStatus().Enum()
+		Users:  nil,
 	}, nil
     // return 
 }
