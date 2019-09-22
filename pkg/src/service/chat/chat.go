@@ -12,7 +12,7 @@ func NewChatServiceServer() chat.ChatServiceServer {
 }
 
 // add yourself to a room + get all users
-func (c chatServiceServer) RegisterRoom(ctx context.Context, message *chat.RegisterClient) (*chat.RegisterClientResponse, error) {
+func (c chatServiceServer) RegisterClient(ctx context.Context, message *chat.RegisterClient) (*chat.RegisterClientResponse, error) {
     // get rooms and status of rooms
     stat, rooms := modelstore.AddUser(*message.RoomId, *message.Username)
     var status int32

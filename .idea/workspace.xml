@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8ca5d41-e1d7-4281-b402-78a2e1e044b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/.main.go.swp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/src/interactor/interactor.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/src/interactor/t" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/src/layout/layout.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/src/go_generated/chat.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/go_generated/chat.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/src/modelstore/value/modelstore.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/modelstore/value/modelstore.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/src/service/chat/chat.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/service/chat/chat.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/chat.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/chat.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +38,11 @@
     </option>
   </component>
   <component name="ProjectId" id="1RAddVTPkn3zd8FF2x8SCNPr9V5" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go Application" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -74,7 +80,15 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go">
+  <component name="RunManager" selected="Go Build.go build main.go (1)">
+    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go-chat-server" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/client/main.go" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go-chat-server" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -92,6 +106,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build server.go" />
       </list>
@@ -110,5 +125,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

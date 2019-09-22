@@ -9,7 +9,7 @@ package chat;
 service ChatService {
     
     // register user
-    rpc registerRoom(RegisterClient) returns (RegisterClientResponse);
+    rpc registerClient(RegisterClient) returns (RegisterClientResponse);
 
     // messaging
     rpc sendMessage(ChatMessage) returns (ChatMessageResponse);

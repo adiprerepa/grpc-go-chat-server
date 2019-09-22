@@ -1,0 +1,27 @@
+go func() {
+		for {
+			data, _ := reader.ReadString('\n')
+			msg := strings.TrimSpace(data)
+			switch {
+			case strings.HasPrefix(msg, "/clients>"):
+				data := strings.SplitAfter(msg, ">")[1]
+				clientsSlice := strings.Split(data, " ")
+				clientsCount := len(clientsSlice)
+				var clients string
+				for _, client := range clientsSlice {
+					clients += client + "\n"
+				}
+				g.Update(func(g *gocui.Gui) error {
+					usersView.Title = fmt.Sprintf(" %d users: ", clientsCount)
+					usersView.Clear()
+					fmt.Fprintln(usersView, clients)
+					return nil
+				})
+			default:
+				g.Update(func(g *gocui.Gui) error {
+					fmt.Fprintln(messagesView, msg)
+					return nil
+				})
+			}
+		}
+	}()
