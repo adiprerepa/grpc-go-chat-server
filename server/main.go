@@ -9,7 +9,13 @@ import (
 )
 
 func main() {
-	if err := grpc.RunServer(context.Background(), chat.NewChatServiceServer(), "3000"); err != nil {
+	var port string
+	if len(os.Args) >= 2 {
+		port = os.Args[1]
+	} else {
+		port = "3000"
+	}
+	if err := grpc.RunServer(context.Background(), chat.NewChatServiceServer(), port); err != nil {
 		_, _ = fmt.Fprintf(os.Stderr, "%v\n", err)
 		os.Exit(1)
 	}

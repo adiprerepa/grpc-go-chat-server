@@ -7,6 +7,7 @@
       <change beforePath="$PROJECT_DIR$/pkg/src/modelstore/value/modelstore.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/modelstore/value/modelstore.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/src/service/chat/chat.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/service/chat/chat.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/chat.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/chat.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

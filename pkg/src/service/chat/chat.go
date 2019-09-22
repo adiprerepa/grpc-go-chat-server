@@ -13,7 +13,6 @@ func NewChatServiceServer() chat.ChatServiceServer {
 
 // add yourself to a room + get all users
 func (c chatServiceServer) RegisterRoom(ctx context.Context, message *chat.RegisterClient) (*chat.RegisterClientResponse, error) {
-    //panic("implement me")
     // get rooms and status of rooms
     stat, rooms := modelstore.AddUser(*message.RoomId, *message.Username)
     var status int32
@@ -34,14 +33,43 @@ func (c chatServiceServer) RegisterRoom(ctx context.Context, message *chat.Regis
 	}
 }
 
-func (c chatServiceServer) SendMessage(context.Context, *chat.ChatMessage) (*chat.ChatMessageResponse, error) {
-	panic("implement me")
+func (c chatServiceServer) SendMessage(ctx context.Context, message *chat.ChatMessage) (*chat.ChatMessageResponse, error) {
+	broadcastStatus := modelstore.BroadcastMsg(*message.Username, *message.Payload, *message.RoomId)
+	var status int32
+	if broadcastStatus {
+		status = 1
+		return &chat.ChatMessageResponse{
+			MesssageStatus:  &status,
+		}, nil
+	} else {
+		status = 2
+		return &chat.ChatMessageResponse{
+			MesssageStatus:  &status,
+		}, nil
+	}
 }
 
-func (c chatServiceServer) UpdateMessage(*chat.MessageUpdateReq, chat.ChatService_UpdateMessageServer) error {
-	panic("implement me")
+func (c chatServiceServer) UpdateMessage(req *chat.MessageUpdateReq, observable chat.ChatService_UpdateMessageServer) error {
+	// called when broadcast in server is called
+	stat := modelstore.AddObservable(*req.ChatRoomId, *req.Username, observable)
+	if stat {
+		return nil
+	} else {
+		panic("err with observable addition")
+	}
 }
 
-func (c chatServiceServer) ExitChat(context.Context, *chat.ExitRequest) (*chat.ExitResponse, error) {
-	panic("implement me")
+func (c chatServiceServer) ExitChat(ctx context.Context, exitReq *chat.ExitRequest) (*chat.ExitResponse, error) {
+	var stat int32
+	if modelstore.RemoveUser(*exitReq.Username, *exitReq.ChatId) {
+		stat = 1
+		return &chat.ExitResponse{
+			ExitStatus: &stat,
+		}, nil
+	} else {
+		stat = 2
+		return &chat.ExitResponse{
+			ExitStatus: &stat,
+		}, nil
+	}
 }

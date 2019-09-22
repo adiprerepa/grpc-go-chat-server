@@ -15,7 +15,7 @@ service ChatService {
     rpc sendMessage(ChatMessage) returns (ChatMessageResponse);
 
     // updating messages
-    rpc updateMessage(MessageUpdateReq) returns (stream UpdateChatMessages);
+    rpc updateMessage(MessageUpdateReq) returns (stream UpdateChatMessage);
 
     // leaving
     rpc exitChat(ExitRequest) returns (ExitResponse);
@@ -52,6 +52,7 @@ message ChatMessage {
     required string username = 1;
     required string payload = 2;
     required string time = 3;
+    required string roomId = 4;
 }
 
 // Message Response
@@ -63,15 +64,17 @@ message ChatMessageResponse {
 
 // for pushing chat updates later
 message MessageUpdateReq {
-    required string username = 1;
+    required string chatRoomId = 1;
+    required string username = 2;
 }
 
-message UpdateChatMessages {
-    required ChatMessage messages = 1;
+message UpdateChatMessage {
+    required ChatMessage message = 1;
 }
 
 message ExitRequest {
     required string username = 1;
+    required string chatId = 2;
 }
 
 message ExitResponse {
