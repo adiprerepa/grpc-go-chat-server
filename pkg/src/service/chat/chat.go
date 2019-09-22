@@ -2,6 +2,7 @@ package chat
 import (
 	"context"
 	chat "go_generated"
+	modelstore "modelstore/value"
 )
 
 type chatServiceServer struct {}
@@ -10,21 +11,27 @@ func NewChatServiceServer() chat.ChatServiceServer {
 	return &chatServiceServer{}
 }
 
+// add yourself to a room + get all users
 func (c chatServiceServer) RegisterRoom(ctx context.Context, message *chat.RegisterClient) (*chat.RegisterClientResponse, error) {
     //panic("implement me")
-
-    // test enum val
-    enumVal, ok := chat.RegisterClientResponseAuthResponseStatus_value["OK"]
-
-    if !ok {
-    	panic("invalid enum thing")
+    // get rooms and status of rooms
+    stat, rooms := modelstore.AddUser(*message.RoomId, *message.Username)
+    var status int32
+    // if there is a room
+    if stat == true {
+    	status = 1
+    	// all users + stat
+    	return &chat.RegisterClientResponse{
+			Status:  &status,
+			Users:  rooms,
+		}, nil
+	} else {
+		status = 2
+		return &chat.RegisterClientResponse{
+			Status: &status,
+			Users: nil,
+		}, nil
 	}
-
-	return &chat.RegisterClientResponse{
-		Status: chat.RegisterClientResponseAuthResponseStatus().Enum()
-		Users:  nil,
-	}, nil
-    // return 
 }
 
 func (c chatServiceServer) SendMessage(context.Context, *chat.ChatMessage) (*chat.ChatMessageResponse, error) {

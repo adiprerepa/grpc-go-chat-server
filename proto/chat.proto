@@ -33,11 +33,9 @@ message RegisterClient {
 // (optional) current users in room
 // (maybe) - all messages so far in given chat room
 message RegisterClientResponse {
-    enum authResponseStatus {
-        OK = 0;
-        DISALLOWED = 1;
-    }
-    required authResponseStatus status = 1;
+    // 1 is ok.
+    // 2 is disallowed.
+    required int32 status = 1;
     repeated RoomUserEntity users = 2;
 }
 
@@ -58,11 +56,9 @@ message ChatMessage {
 
 // Message Response
 message ChatMessageResponse {
-    enum messageStat {
-        OK = 0;
-        ERR = 1;
-    }
-    required messageStat status = 1;
+    // 1 means ok
+    // 2 means err
+    required int32 messsageStatus = 1;
 }
 
 // for pushing chat updates later
@@ -79,11 +75,9 @@ message ExitRequest {
 }
 
 message ExitResponse {
-    enum exitStatus {
-        PERMITTED = 0;
-        NOT_PERMITTED = 1;
-    }
-    required exitStatus exitstatus = 1;
+    // 1 is permitted
+    // 2 is not permitted
+    required int32 exitStatus = 1;
 }
 
 message RegisterChatRoomRequest {
@@ -93,9 +87,7 @@ message RegisterChatRoomRequest {
 }
 
 message RegisterChatRoomResponse {
-    enum registrationStatus {
-        OK = 0;
-        EXISTS = 1;
-    }
-    required registrationStatus regStatus = 1;
+    // 1 is ok
+    // 2 is the chat room already exists
+    required int32 registrationStatus = 1;
 }
