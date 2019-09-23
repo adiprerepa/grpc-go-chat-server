@@ -2,7 +2,8 @@ package main
 
 import (
 	"github.com/jroimartin/gocui"
-	"google.golang.org/grpc"
+	"interactor"
+
 	"layout"
 	"log"
 )
@@ -12,18 +13,19 @@ const (
 )
 func main() {
 	g, err := gocui.NewGui(gocui.OutputNormal)
-	conn, gerr := grpc.Dial(addr, grpc.WithInsecure())
-	if gerr != nil {
-		log.Fatal(gerr)
-	}
+	//conn, gerr := grpc.Dial(addr, grpc.WithInsecure())
+	//if gerr != nil {
+	//	log.Fatal(gerr)
+	//}
 	if err != nil {
 		log.Fatal(err)
 	}
     defer g.Close()
     g.SetManagerFunc(layout.Layout)
-    g.SetKeybinding("name", gocui.KeyCtrlC, gocui.ModNone, nil)
-	//g.SetKeybinding("name", gocui.KeyEnter, gocui.ModNone, client.Connect)
-	g.MainLoop()
+	g.SetKeybinding("username", gocui.KeyEnter, gocui.ModNone, interactor.SetUser)
+	g.SetKeybinding("roomId", gocui.KeyEnter, gocui.ModNone, interactor.SetRoom)
+	g.SetKeybinding("input", gocui.KeyEnter, gocui.ModNone, interactor.SendMessage)
+	_ = g.MainLoop()
 }
 
 

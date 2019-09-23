@@ -34,26 +34,26 @@ func Layout(g *gocui.Gui) error {
 		users.Wrap = true
 	}
 
-	if name, err := g.SetView("name", maxX/2-10, maxY/2-1, maxX/2+10, maxY/2+1); err != nil {
+	if name, err := g.SetView("username", maxX/2-10, maxY/2-5, maxX/2+10, maxY/2-3); err != nil {
 		if err != gocui.ErrUnknownView {
 			return err
 		}
-		g.SetCurrentView("name")
+		g.SetCurrentView("username")
 		name.Title = " name: "
 		name.Autoscroll = false
 		name.Wrap = true
 		name.Editable = true
 	}
 
-	//if roomId, err := g.SetView("roomId", maxX/2+10, maxY/2+1, maxX/2+10, maxY/2+2); err != nil {
-	//	if err != gocui.ErrUnknownView {
-	//		return err
-	//	}
-	//	g.SetCurrentView("roomId")
-	//	roomId.Title = "Room Id: "
-	//	roomId.Autoscroll = false
-	//	roomId.Wrap = true
-	//	roomId.Editable = true
-	//}
+	if roomId, err := g.SetView("roomId", maxX/2-10, maxY/2-1, maxX/2+10, maxY/2+1); err != nil {
+		if err != gocui.ErrUnknownView {
+			return err
+		}
+		//g.SetCurrentView("roomId")
+		roomId.Title = "Room Id: "
+		roomId.Autoscroll = false
+		roomId.Wrap = true
+		roomId.Editable = true
+	}
 	return nil
 }

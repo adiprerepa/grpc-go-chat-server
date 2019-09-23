@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8ca5d41-e1d7-4281-b402-78a2e1e044b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/.main.go.swp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/src/interactor/interactor.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/src/interactor/t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/src/layout/layout.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/src/go_generated/chat.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/go_generated/chat.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/src/interactor/interactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/interactor/interactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/src/interactor/t" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/interactor/t" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/src/layout/layout.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/layout/layout.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/src/modelstore/value/modelstore.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/modelstore/value/modelstore.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/src/service/chat/chat.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/src/service/chat/chat.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/chat.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/chat.proto" afterDir="false" />
     </list>

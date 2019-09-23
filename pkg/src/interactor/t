@@ -25,3 +25,5 @@ go func() {
 			}
 		}
 	}()
+
+	g *gocui.Gui, v *gocui.View

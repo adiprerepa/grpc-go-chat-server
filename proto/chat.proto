@@ -70,6 +70,7 @@ message MessageUpdateReq {
 
 message UpdateChatMessage {
     required ChatMessage message = 1;
+    repeated RoomUserEntity roomEntities = 2;
 }
 
 message ExitRequest {

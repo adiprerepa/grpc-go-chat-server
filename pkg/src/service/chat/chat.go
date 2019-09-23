@@ -1,6 +1,7 @@
 package chat
 import (
 	"context"
+	"fmt"
 	chat "go_generated"
 	modelstore "modelstore/value"
 )
@@ -13,7 +14,8 @@ func NewChatServiceServer() chat.ChatServiceServer {
 
 // add yourself to a room + get all users
 func (c chatServiceServer) RegisterClient(ctx context.Context, message *chat.RegisterClient) (*chat.RegisterClientResponse, error) {
-    // get rooms and status of rooms
+    fmt.Print("Register Cli called\n")
+	// get rooms and status of rooms
     stat, rooms := modelstore.AddUser(*message.RoomId, *message.Username)
     var status int32
     // if there is a room
@@ -34,6 +36,7 @@ func (c chatServiceServer) RegisterClient(ctx context.Context, message *chat.Reg
 }
 
 func (c chatServiceServer) SendMessage(ctx context.Context, message *chat.ChatMessage) (*chat.ChatMessageResponse, error) {
+	fmt.Print("SendMessage Called\n")
 	broadcastStatus := modelstore.BroadcastMsg(*message.Username, *message.Payload, *message.RoomId)
 	var status int32
 	if broadcastStatus {
@@ -51,15 +54,13 @@ func (c chatServiceServer) SendMessage(ctx context.Context, message *chat.ChatMe
 
 func (c chatServiceServer) UpdateMessage(req *chat.MessageUpdateReq, observable chat.ChatService_UpdateMessageServer) error {
 	// called when broadcast in server is called
-	stat := modelstore.AddObservable(*req.ChatRoomId, *req.Username, observable)
-	if stat {
-		return nil
-	} else {
-		panic("err with observable addition")
-	}
+	fmt.Print("UpdateMessage called \n")
+	modelstore.AddObservable(*req.ChatRoomId, *req.Username, observable)
+	return nil
 }
 
 func (c chatServiceServer) ExitChat(ctx context.Context, exitReq *chat.ExitRequest) (*chat.ExitResponse, error) {
+	fmt.Print("Exit called\n")
 	var stat int32
 	if modelstore.RemoveUser(*exitReq.Username, *exitReq.ChatId) {
 		stat = 1

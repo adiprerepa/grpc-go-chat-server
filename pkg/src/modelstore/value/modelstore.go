@@ -70,21 +70,35 @@ func BroadcastMsg(username, payload, chatId string) bool {
 	return ret
 }
 
-func AddObservable(roomId string, username string, observable chat.ChatService_UpdateMessageServer) bool {
-	var ret = false
+func AddObservable(roomId string, username string, observable chat.ChatService_UpdateMessageServer) {
+	var found = false
 	for _, chatRoom := range chatRooms {
 		// find right room
 		if chatRoom.chatRoomId == roomId {
+			found = true
 			for _, user := range chatRoom.users {
 				// find right user to add observable to
 				if username == user.username {
 					user.observable = observable
-					ret = true
 				}
 			}
 		}
 	}
-	return ret
+	// create a new room
+	if found == false {
+		chatUser := user{
+			username:   username,
+			observable: observable,
+		}
+		var chatRoomUsers []user
+		room := chatRoom{
+			// new arr with 1 user
+			users: append(chatRoomUsers, chatUser),
+			chatRoomId: roomId,
+		}
+		// append to chatrooms
+		chatRooms = append(chatRooms, room)
+	}
 }
 
 func RemoveUser(roomId, username string) bool {
